@@ -6,6 +6,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import study.cjj.eloan.base.domain.LoginInfo;
+import study.cjj.eloan.base.vo.VerifyCodeVO;
 
 /**
  * 存放用户上下文信息
@@ -14,6 +15,7 @@ import study.cjj.eloan.base.domain.LoginInfo;
  */
 public class UserContext {
 	public static final String LOGININFO_IN_SESSION="loginInfo";
+	private static final String VERIFYCODE_IN_SESSION = "verifyCode";
 
 	private static HttpServletRequest getRequest() {
 		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
@@ -26,5 +28,14 @@ public class UserContext {
 	public static void setLoginInfo(LoginInfo loginInfo) {
 		getRequest().getSession().setAttribute(LOGININFO_IN_SESSION, loginInfo);
 	}
+	
+	public static void setVerifyCodeVO(VerifyCodeVO vc) {
+		getRequest().getSession().setAttribute(VERIFYCODE_IN_SESSION, vc);
+	}
+
+	public static VerifyCodeVO getVerifyCodeVO() {
+		return (VerifyCodeVO)getRequest().getSession().getAttribute(VERIFYCODE_IN_SESSION);
+	}
+
 
 }

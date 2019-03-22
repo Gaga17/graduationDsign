@@ -36,11 +36,11 @@
       realName = #{realName,jdbcType=VARCHAR},
       idNumber = #{idNumber,jdbcType=VARCHAR},
       phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
-      incomeGrade_id = #{incomeGrade,jdbcType=BIGINT},
-      marriage_id = #{marriage,jdbcType=BIGINT},
-      kidCount_id = #{kidCount,jdbcType=BIGINT},
-      educationBackground_id = #{educationBackground,jdbcType=BIGINT},
-      houseCondition_id = #{houseCondition,jdbcType=BIGINT}
+      incomeGrade_id = #{incomeGrade.id,jdbcType=BIGINT},
+      marriage_id = #{marriage.id,jdbcType=BIGINT},
+      kidCount_id = #{kidCount.id,jdbcType=BIGINT},
+      educationBackground_id = #{educationBackground.id,jdbcType=BIGINT},
+      houseCondition_id = #{houseCondition.id,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT} AND version = #{version}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >

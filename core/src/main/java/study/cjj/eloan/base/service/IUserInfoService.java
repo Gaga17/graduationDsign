@@ -10,6 +10,13 @@ public interface IUserInfoService {
 	 * @return
 	 */
 	public UserInfo getUserInfo(Long id);
+
+	/**
+	 * 绑定手机号
+	 * @param phoneNumber	手机号
+	 * @param verifyCode	验证码
+	 */
+	public void bindPhone(String phoneNumber, String verifyCode);
 	
 
 }

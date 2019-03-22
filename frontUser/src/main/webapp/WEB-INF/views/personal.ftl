@@ -74,10 +74,12 @@
 			//提交整个表单
 			$("#bindPhoneForm").ajaxSubmit({
 				success : function(data) {
-					if (data.success) {
-						window.location.reload(); //刷新当前页面  关闭模式窗
-					} else {
-						$.messager.popup(data.msg);
+					if(data.success){
+						$.messager.confirm("提示","绑定手机成功！",function(){
+						window.location.reload();
+					});
+					}else{
+						$.messager.alert("提示",data.msg);
 					}
 				}
 			})
@@ -102,15 +104,16 @@
 				<div class="panel panel-default">
 					<div class="panel-body el-account">
 						<div class="el-account-info">
-						
-							<div class="pull-left el-head-img" >
-								<img class="icon" src="/images/photo.png"/>
+
+							<div class="pull-left el-head-img">
+								<img class="icon" src="/images/photo.png" />
 							</div>
-							<div class="pull-left el-head" style="text-align: center; width: 400px; margin: 30px auto 0px auto;">
+							<div class="pull-left el-head"
+								style="text-align: center; width: 400px; margin: 30px auto 0px auto;">
 								<p>用户名:${loginInfo.username}</p>
 								<p>上次登录时间：${lastloginTime?string("yyyy-MM-dd HH:mm:ss")}</p>
 							</div>
-							
+
 							<div class="pull-left"
 								style="text-align: center; width: 400px; margin: 30px auto 0px auto;">
 								<a class="btn btn-primary btn-lg" href="/recharge.do">账户充值</a> <a
@@ -200,10 +203,10 @@
 											</p>
 											<#else>
 											<p>
-												未绑定  <a href="javascript:;" id="showBindEmailModal">马上绑定</a>
+												未绑定 <a href="javascript:;" id="showBindEmailModal">马上绑定</a>
 											</p>
 											</#if>
-											
+
 										</div>
 										<div class="clearfix"></div>
 										<p class="info">您可以设置邮箱来接收重要信息</p>
@@ -274,9 +277,7 @@
 			</div>
 		</div>
 	</div>
-	</#if>
-	
-	<#if !userInfo.isBindEmail>
+	</#if> <#if !userInfo.isBindEmail>
 	<div class="modal fade" id="bindEmailModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog" role="document">
@@ -289,7 +290,8 @@
 					<h4 class="modal-title" id="exampleModalLabel">绑定邮箱</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" id="bindEmailForm" method="post" action="/sendEmail.do">
+					<form class="form-horizontal" id="bindEmailForm" method="post"
+						action="/sendEmail.do">
 						<div class="form-group">
 							<label for="email" class="col-sm-2 control-label">Email:</label>
 							<div class="col-sm-4">
@@ -305,7 +307,6 @@
 			</div>
 		</div>
 	</div>
-	</#if> 
-	<#include "common/footer-tpl.ftl" />
+	</#if> <#include "common/footer-tpl.ftl" />
 </body>
 </html>
