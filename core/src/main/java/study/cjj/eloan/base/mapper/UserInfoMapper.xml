@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="study.cjj.eloan.base.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="study.cjj.eloan.base.domain.UserInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="bitState" property="bitState" jdbcType="BIGINT" />
+    <result column="realName" property="realName" jdbcType="VARCHAR" />
+    <result column="idNumber" property="idNumber" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR" />
+    
+    <association column="incomeGrade_id" property="incomeGrade" javaType="study.cjj.eloan.base.domain.SystemDictionaryItem" select="study.cjj.eloan.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+    <association column="marriage_id" property="marriage" javaType="study.cjj.eloan.base.domain.SystemDictionaryItem" select="study.cjj.eloan.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+    <association column="kidCount_id" property="kidCount" javaType="study.cjj.eloan.base.domain.SystemDictionaryItem" select="study.cjj.eloan.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+    <association column="educationBackground_id" property="educationBackground" javaType="study.cjj.eloan.base.domain.SystemDictionaryItem" select="study.cjj.eloan.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+    <association column="houseCondition_id" property="houseCondition" javaType="study.cjj.eloan.base.domain.SystemDictionaryItem" select="study.cjj.eloan.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from userinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="study.cjj.eloan.base.domain.UserInfo" keyProperty="id" >
+    insert into userinfo (id,version, bitState, realName, 
+      idNumber, phoneNumber, incomeGrade_id, 
+      marriage_id, kidCount_id, educationBackground_id, 
+      houseCondition_id)
+    values (#{id},0, #{bitState,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{incomeGrade.id,jdbcType=BIGINT}, 
+      #{marriage.id,jdbcType=BIGINT}, #{kidCount.id,jdbcType=BIGINT}, #{educationBackground.id,jdbcType=BIGINT}, 
+      #{houseCondition.id,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.UserInfo" >
+    update userinfo
+    set version = version + 1,
+      bitState = #{bitState,jdbcType=BIGINT},
+      realName = #{realName,jdbcType=VARCHAR},
+      idNumber = #{idNumber,jdbcType=VARCHAR},
+      phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      incomeGrade_id = #{incomeGrade,jdbcType=BIGINT},
+      marriage_id = #{marriage,jdbcType=BIGINT},
+      kidCount_id = #{kidCount,jdbcType=BIGINT},
+      educationBackground_id = #{educationBackground,jdbcType=BIGINT},
+      houseCondition_id = #{houseCondition,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT} AND version = #{version}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, version, bitState, realName, idNumber, phoneNumber, incomeGrade_id, marriage_id, 
+    kidCount_id, educationBackground_id, houseCondition_id
+    from userinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, version, bitState, realName, idNumber, phoneNumber, incomeGrade_id, marriage_id, 
+    kidCount_id, educationBackground_id, houseCondition_id
+    from userinfo
+  </select>
+</mapper>

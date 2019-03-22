@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study.cjj.eloan.base.mapper.LoginInfoMapper">
+  <resultMap id="BaseResultMap" type="study.cjj.eloan.base.domain.LoginInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="usertype" jdbcType="TINYINT" property="userType" />
+    <result column="admin" jdbcType="TINYINT" property="admin" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from logininfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="study.cjj.eloan.base.domain.LoginInfo" useGeneratedKeys="true">
+    insert into logininfo (username, password, state,usertype,admin
+      )
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT},#{userType,jdbcType=TINYINT},#{admin,jdbcType=TINYINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.LoginInfo">
+    update logininfo
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      userType = #{userType,jdbcType=TINYINT},
+      admin = #{admin,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, username, password, state,usertype,admin
+    from logininfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, password, state,usertype,admin
+    from logininfo
+  </select>
+  
+  <select id="selectCountByUserName" resultType="int">
+  	SELECT COUNT(id) FROM logininfo WHERE username = #{username}
+  </select>
+  
+  <select id="getLoginInfoByUserNameAndPassword" resultMap="BaseResultMap">
+  	SELECT * FROM logininfo WHERE username = #{username} AND password = #{password}
+  </select>
+  
+  <select id="selectUserTypeCount" resultType="int">
+  	SELECT count(id) FROM logininfo WHERE usertype = #{usertype}
+  </select>
+  
+  <select id="getLastLoginTime" resultType="java.util.Date">
+  	SELECT i.loginTime FROM logininfo l,ipLog i WHERE l.username=i.username AND l.usertype = i.loginType AND l.username=#{username} AND l.userType=#{userType} order by i.loginTime DESC limit 1,1
+  </select>
+  
+  
+</mapper>
