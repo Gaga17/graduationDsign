@@ -14,7 +14,7 @@
 		$("#showBindEmailModal").click(function() {
 			$("#bindEmailModal").modal("show");
 		});
-		
+
 		//给邮箱的保存按钮添加点击事件发送ajax请求
 		$("#bindEmail").click(function() {
 			//提交整个表单 (url 是默认的action)
@@ -28,16 +28,19 @@
 				}
 			})
 		});
-		
-		
+
 		//手机-点击马上绑定
 		$("#showBindPhoneModal").click(function() {
 			$("#bindPhoneModal").modal("show");
 		});
-		
+
 		//给发送验证码按钮添加事件
 		$("#sendVerifyCode").click(function() {
 			var phoneNumber = $("#phoneNumber").val(); //获取到手机号后发送ajax请求
+			if (phoneNumber == null || phoneNumber == "") {
+				$.messager.alert("请输入手机号!");
+				return;
+			}
 			var _this = $(this);
 			_this.attr("disabled", true); //点击之后立刻禁用按钮
 			if (phoneNumber) {
@@ -62,7 +65,7 @@
 								}
 							}, 1000);
 						} else {
-							$.messager.popup(data.msg);
+							$.messager.alert(data.msg);
 							_this.attr("disabled", false);
 						}
 					}
@@ -74,12 +77,10 @@
 			//提交整个表单
 			$("#bindPhoneForm").ajaxSubmit({
 				success : function(data) {
-					if(data.success){
-						$.messager.confirm("提示","绑定手机成功！",function(){
+					if (data.success) {
 						window.location.reload();
-					});
-					}else{
-						$.messager.alert("提示",data.msg);
+					} else {
+						$.messager.alert("提示", data.msg);
 					}
 				}
 			})
@@ -111,7 +112,7 @@
 							<div class="pull-left el-head"
 								style="text-align: center; width: 400px; margin: 30px auto 0px auto;">
 								<p>用户名:${loginInfo.username}</p>
-								<p>上次登录时间：${lastloginTime?string("yyyy-MM-dd HH:mm:ss")}</p>
+								<p>上次登录时间：${lastloginTime?string("yyyy-MM-dd HH:mm:ss")!""}</p>
 							</div>
 
 							<div class="pull-left"
@@ -239,7 +240,7 @@
 
 	<#if !userInfo.isBindPhone >
 	<div class="modal fade" id="bindPhoneModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel">
+		aria-labelledby="exampleModalLabel" style="margin-top: 8%">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
