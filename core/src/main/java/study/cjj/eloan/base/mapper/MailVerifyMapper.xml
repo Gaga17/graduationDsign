@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study.cjj.eloan.base.mapper.MailVerifyMapper">
+  <resultMap id="BaseResultMap" type="study.cjj.eloan.base.domain.MailVerify">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="userinfo_id" jdbcType="BIGINT" property="userinfoId" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="randomCode" jdbcType="VARCHAR" property="randomCode" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mailverify
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="study.cjj.eloan.base.domain.MailVerify" useGeneratedKeys="true">
+    insert into mailverify (userinfo_id, deadline, randomCode,email
+      )
+    values (#{userinfoId,jdbcType=BIGINT}, #{deadline,jdbcType=TIMESTAMP}, #{randomCode,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.MailVerify">
+    update mailverify
+    set userinfo_id = #{userinfoId,jdbcType=BIGINT},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      randomCode = #{randomCode,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, userinfo_id, deadline, randomCode,email
+    from mailverify
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, userinfo_id, deadline, randomCode,email
+    from mailverify
+  </select>
+  
+  <select id="selectByCheckCode" resultMap="BaseResultMap">
+    select id, userinfo_id, deadline, randomCode,email
+    from mailverify where randomCode = #{randomCode}
+  </select>
+</mapper>
