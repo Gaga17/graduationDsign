@@ -21,9 +21,11 @@
 			$("#bindEmailForm").ajaxSubmit({
 				success : function(data) {
 					if (data.success) {
-						window.location.reload(); //刷新当前页面  关闭模式窗
+						$.messager.confirm("提示","绑定邮箱邮件已经发送成功，请及时去邮箱查收!",function(){
+							window.location.reload();
+							});
 					} else {
-						$.messager.popup(data.msg);
+						$.messager.alert(data.msg);
 					}
 				}
 			})

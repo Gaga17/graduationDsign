@@ -26,8 +26,16 @@ public class DateUtil {
 				DateUtils.addDays(DateUtils.truncate(d, Calendar.DATE), 1), -1);
 	}
 	
+	public static Date addDay(Date date, int validateDay) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_MONTH, validateDay);
+		return calendar.getTime();
+	}
+	
 //	public static void main(String[] args) {
-//		System.out.println(endOfDay(new Date()).toLocaleString());
+//		Date addDay = addDay(new Date(), 3);
+//		System.out.println(addDay);
 //	}
 	
 }

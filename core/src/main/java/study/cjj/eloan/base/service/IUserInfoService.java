@@ -17,6 +17,10 @@ public interface IUserInfoService {
 	 * @param verifyCode	验证码
 	 */
 	public void bindPhone(String phoneNumber, String verifyCode);
+
+	public void sendBindEmail(String email);
+
+	public void bindMailVerify(String checkCode);
 	
 
 }

@@ -24,6 +24,7 @@ public class UserInfo extends BaseDomain {
 	private String realName; // 对应实名认证中的真实姓名
 	private String idNumber; // 对应实名认证中的身份证号
 	private String phoneNumber = ""; // 手机号
+	private String email = "";	//邮箱
 
 	// ====================== 会员基本资料 ===================
 	private SystemDictionaryItem incomeGrade; // 月收入

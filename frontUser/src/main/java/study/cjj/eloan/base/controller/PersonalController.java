@@ -90,5 +90,44 @@ public class PersonalController extends BaseController{
 	}
 
 
+	/**
+	 * 发送绑定邮箱
+	 * @param email
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/sendEmail")
+	@ResponseBody
+	public ResultJSON sendBindEmail(String email, Model model) {
+		ResultJSON json = new ResultJSON();
+		try {
+			this.userInfoService.sendBindEmail(email);
+			json.setSuccess(true);
+		} catch (LogicException le) {
+			json.setSuccess(false);
+			json.setMsg(le.getMessage());
+		}
+		return json;
+	}
+
+
+	/**
+	 * 绑定邮箱验证
+	 * @param checkCode
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/mailBindVerify")
+	public String mailBindVerify(String checkCode, Model model) {
+		try {
+			this.userInfoService.bindMailVerify(checkCode);
+			model.addAttribute("success",true);
+		} catch (Exception e) {
+			model.addAttribute("success",false);
+			model.addAttribute("msg", e.getMessage());
+		}
+		return "bindResult";
+	}
+
 	
 }
