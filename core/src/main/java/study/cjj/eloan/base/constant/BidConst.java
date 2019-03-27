@@ -19,6 +19,6 @@ public class BidConst {
 	public static final String DEFALUT_ADMIN = "admin";	//默认管理员
 	public static final String DEFALUT_ADMIN_PASSWORD = "1111";	//管理员默认密码
 	
-	
+	public static final int CREDIT_BORROW_SCORE = 30; // 信用标需要认证分数达到30分
 
 }

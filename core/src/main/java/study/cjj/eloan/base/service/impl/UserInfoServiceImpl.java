@@ -115,5 +115,22 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	}
 
 
+	@Override
+	public void updateBasicInfo(UserInfo userinfo) {
+		Long id = UserContext.getLoginInfo().getId();
+		UserInfo old = this.userInfoMapper.selectByPrimaryKey(id);
+
+		old.setEducationBackground(userinfo.getEducationBackground());
+		old.setHouseCondition(userinfo.getHouseCondition());
+		old.setIncomeGrade(userinfo.getIncomeGrade());
+		old.setKidCount(userinfo.getKidCount());
+		old.setMarriage(userinfo.getMarriage());
+
+		old.addState(BitStatesUtils.OP_BASIC_INFO);
+		this.update(old);
+		
+	}
+
+
 
 }

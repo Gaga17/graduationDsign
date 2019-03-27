@@ -1,4 +1,5 @@
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\domain\SystemDictionary.java
+E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\query\SystemDictionaryQueryObject.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\domain\Account.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\service\SendSMSService.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\domain\LoginInfo.java
@@ -13,14 +14,16 @@ E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\service\impl\
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\query\QueryObject.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\domain\BaseDomain.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\constant\BidConst.java
+E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\constant\DicSnConst.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\vo\VerifyCodeVO.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\util\DateUtil.java
+E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\service\ISystemDictionaryService.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\util\BitStatesUtils.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\service\impl\AccountServiceImpl.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\util\LogicException.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\mapper\IpLogMapper.java
-E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\util\MD5.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\mapper\SystemDictionaryItemMapper.java
+E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\util\MD5.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\service\IIpLogService.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\mapper\SystemDictionaryMapper.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\service\impl\LoginInfoServiceImpl.java
@@ -40,3 +43,4 @@ E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\service\SendE
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\domain\UserInfo.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\domain\MailVerify.java
 E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\domain\IpLog.java
+E:\CJJ\GraduationDesignGit\core\src\main\java\study\cjj\eloan\base\service\impl\SystemDictionaryServiceImpl.java

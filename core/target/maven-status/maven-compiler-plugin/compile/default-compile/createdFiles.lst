@@ -20,6 +20,7 @@ study\cjj\eloan\base\domain\UserInfo.class
 study\cjj\eloan\base\mapper\SystemDictionaryItemMapper.class
 study\cjj\eloan\base\service\impl\AccountServiceImpl.class
 study\cjj\eloan\base\service\IVerifyCodeService.class
+study\cjj\eloan\base\service\ISystemDictionaryService.class
 study\cjj\eloan\base\domain\MailVerify.class
 study\cjj\eloan\base\service\IUserInfoService.class
 study\cjj\eloan\base\service\ILoginInfoService.class
@@ -34,9 +35,12 @@ study\cjj\eloan\base\query\PageResult.class
 study\cjj\eloan\base\domain\MyMailMessage.class
 study\cjj\eloan\base\query\IpLogQueryObject.class
 study\cjj\eloan\base\vo\VerifyCodeVO.class
+study\cjj\eloan\base\query\SystemDictionaryQueryObject.class
+study\cjj\eloan\base\constant\DicSnConst.class
 study\cjj\eloan\base\service\IMailService.class
 study\cjj\eloan\base\service\impl\LoginInfoServiceImpl.class
-study\cjj\eloan\base\service\IIpLogService.class
 study\cjj\eloan\base\service\impl\UserInfoServiceImpl.class
+study\cjj\eloan\base\service\IIpLogService.class
 study\cjj\eloan\base\domain\BaseDomain.class
 study\cjj\eloan\base\constant\BidConst.class
+study\cjj\eloan\base\service\impl\SystemDictionaryServiceImpl.class

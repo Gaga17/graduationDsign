@@ -16,12 +16,12 @@
   <insert id="insert" parameterType="study.cjj.eloan.base.domain.SystemDictionaryItem" useGeneratedKeys="true" keyProperty="id" >
     insert into systemdictionaryitem (parentId, title, tvalue, 
       sequence, intro)
-    values (#{parentid,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{tvalue,jdbcType=VARCHAR}, 
+    values (#{parentId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{tvalue,jdbcType=VARCHAR}, 
       #{sequence,jdbcType=TINYINT}, #{intro,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.SystemDictionaryItem" >
     update systemdictionaryitem
-    set parentId = #{parentid,jdbcType=BIGINT},
+    set parentId = #{parentId,jdbcType=BIGINT},
       title = #{title,jdbcType=VARCHAR},
       tvalue = #{tvalue,jdbcType=VARCHAR},
       sequence = #{sequence,jdbcType=TINYINT},
@@ -37,4 +37,43 @@
     select id, parentId, title, tvalue, sequence, intro
     from systemdictionaryitem
   </select>
+  
+  <sql id="select_where">
+		<where>
+			<if test="parentId!=-1">
+				AND parentId = #{parentId}
+			</if>
+			<if test="keywords!=null">
+				AND title LIKE concat('%',#{keywords},'%')
+			</if>
+		</where>
+	</sql>
+	<select id="queryForCount" resultType="int">
+		select count(id) from systemdictionaryitem
+		<include refid="select_where" />
+	</select>
+	<select id="query" resultMap="BaseResultMap">
+		select  id,parentId,title, tvalue, sequence, intro
+		from `systemdictionaryitem`
+		<include refid="select_where" />
+		order by sequence asc
+		<if test="pageSize &gt; -1">
+			LIMIT #{start},#{pageSize}
+		</if>
+	</select>
+	
+	<resultMap id="ListResultMap" type="study.cjj.eloan.base.domain.SystemDictionaryItem">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="tvalue" property="tvalue" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="listItemByParentSn" resultMap="ListResultMap">
+		select i.id as id,i.title as title,i.tvalue as tvalue 
+		FROM systemdictionaryitem i join systemdictionary d on i.parentid=d.id
+		where d.sn = #{sn}
+		order by i.sequence;
+	</select>
+	
+  
 </mapper>

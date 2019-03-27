@@ -33,4 +33,28 @@
     select id, sn, title, intro
     from systemdictionary
   </select>
+  
+  <sql id="select_where">
+		<where>
+			<if test="keywords!=null">
+				AND (sn LIKE concat('%',#{keywords},'%') OR title LIKE concat('%',#{keywords},'%'))
+			</if>
+		</where>
+	</sql>
+	
+	<select id="queryForCount" resultType="int">
+		select count(id) from systemdictionary
+		<include refid="select_where" />
+	</select>
+	
+	<select id="query" resultMap="BaseResultMap">
+		select id, sn, title, intro
+		from `systemdictionary`
+		<include refid="select_where" />
+		<if test="pageSize &gt;=-1">
+			limit #{start},#{pageSize}
+		</if>
+	</select>
+  
+  
 </mapper>
