@@ -34,6 +34,8 @@ public class UserInfo extends BaseDomain {
 	private SystemDictionaryItem kidCount; // 子女情况
 	private SystemDictionaryItem educationBackground; // 学历
 	private SystemDictionaryItem houseCondition; // 住房条件
+	
+	private Long realAuthenticationId; // 对应实名认证的信息
 
 	public static UserInfo empty(Long id) {
 		UserInfo empty = new UserInfo();

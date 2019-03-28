@@ -60,7 +60,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 		}
 	}
 	
-	private void update(UserInfo ui) {
+	public void update(UserInfo ui) {
 		int ret = this.userInfoMapper.updateByPrimaryKey(ui);
 		if (ret == 0) {
 			System.out.println("userinfo对象更新失败");

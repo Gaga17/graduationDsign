@@ -164,7 +164,7 @@
 											</p>
 											<#else>
 											<p>
-												未认证 <a href="#">马上认证 </a>
+												未认证 <a href="/realAuth.do">马上认证 </a>
 											</p>
 											</#if>
 										</div>

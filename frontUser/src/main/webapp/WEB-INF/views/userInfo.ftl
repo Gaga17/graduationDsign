@@ -4,6 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>P2P平台-用户信息</title>
 		<#include "common/links-tpl.ftl" />
+		<#include "common/loadSystemDictionary-macro.ftl" />
 		<link type="text/css" rel="stylesheet" href="/css/account.css" />
 		<script type="text/javascript" src="/js/plugins/jquery.form.js"></script>
 		<script>
@@ -104,9 +105,7 @@
 								<div class="col-sm-8">
 									<select class="form-control" id="educationBackground" name="educationBackground.id" style="width: 180px" autocomplate="off">
 										<option value="">请选择</option>
-										<#list ebgSelects as item>
-											<option value="${item.id}">${item.title}</option>
-										</#list>
+										<@loadDictionary sn="educationBackground" />
 									</select>
 									<script type="text/javascript">
 										$("#educationBackground option[value=${(userInfo.educationBackground.id)!-1}]").attr("selected",true);
@@ -121,9 +120,7 @@
 								<div class="col-sm-8">
 									<select class="form-control" id="incomeGrade" name="incomeGrade.id" style="width: 180px" autocomplate="off" >
 										<option value="">请选择</option>
-										<#list igSelects as item>
-											<option value="${item.id}">${item.title}</option>
-										</#list>
+										<@loadDictionary sn="incomeGrade" />
 									</select>
 									<script type="text/javascript">
 										$("#incomeGrade option[value=${(userInfo.incomeGrade.id)!-1}]").attr("selected",true);
@@ -138,9 +135,7 @@
 								<div class="col-sm-8">
 									<select class="form-control" id="marriage" name="marriage.id" style="width: 180px" autocomplate="off">
 										<option value="">请选择</option>
-										<#list magSelects as item>
-											<option value="${item.id}">${item.title}</option>
-										</#list>
+										<@loadDictionary sn="marriage" />
 									</select>
 									<script type="text/javascript">
 										$("#marriage option[value=${(userInfo.marriage.id)!-1}]").attr("selected",true);
@@ -155,9 +150,7 @@
 								<div class="col-sm-8">
 									<select class="form-control" id="kidCount" name="kidCount.id" style="width: 180px" autocomplate="off">
 										<option value="">请选择</option>
-										<#list kcSelects as item>
-											<option value="${item.id}">${item.title}</option>
-										</#list>
+										<@loadDictionary sn="kidCount" />
 									</select>
 									<script type="text/javascript">
 										$("#kidCount option[value=${(userInfo.kidCount.id)!-1}]").attr("selected",true);
@@ -172,9 +165,7 @@
 								<div class="col-sm-8">
 									<select class="form-control" id="houseCondition" name="houseCondition.id" style="width: 180px" autocomplate="off">
 										<option value="">请选择</option>
-										<#list hcSelects as item>
-											<option value="${item.id}">${item.title}</option>
-										</#list>
+										<@loadDictionary sn="houseCondition" />
 									</select>
 									<script type="text/javascript">
 										$("#houseCondition option[value=${(userInfo.houseCondition.id)!-1}]").attr("selected",true);

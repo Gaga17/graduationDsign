@@ -35,6 +35,8 @@ public interface IUserInfoService {
 	 * @param userinfo
 	 */
 	public void updateBasicInfo(UserInfo userinfo);
+
+	public void update(UserInfo userinfo);
 	
 
 }

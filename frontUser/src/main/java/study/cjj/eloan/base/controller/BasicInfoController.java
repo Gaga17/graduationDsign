@@ -35,11 +35,11 @@ public class BasicInfoController extends BaseController{
 			UserInfo ui=this.userInfoService.getUserInfo(current.getId());
 			model.addAttribute("userInfo",ui);
 			
-			model.addAttribute("ebgSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_EDUCATION_BACKGROUND));
-			model.addAttribute("igSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_INCOME_GRADE));
-			model.addAttribute("magSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_MARRIAGE));
-			model.addAttribute("kcSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_KID_COUNT));
-			model.addAttribute("hcSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_HOUSE_CONDITION));
+//			model.addAttribute("ebgSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_EDUCATION_BACKGROUND));
+//			model.addAttribute("igSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_INCOME_GRADE));
+//			model.addAttribute("magSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_MARRIAGE));
+//			model.addAttribute("kcSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_KID_COUNT));
+//			model.addAttribute("hcSelects", systemDictionaryService.listItemByParentSn(DicSnConst.SN_HOUSE_CONDITION));
 		}
 		return "userInfo";
 	}

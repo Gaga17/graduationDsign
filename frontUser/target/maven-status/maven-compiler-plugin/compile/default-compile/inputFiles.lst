@@ -1,8 +1,10 @@
 E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\controller\IpLogController.java
 E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\interceptor\LoginCheckInterceptor.java
+E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\interceptor\AddGlobalUtilsInterceptor.java
 E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\controller\BaseController.java
 E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\controller\PersonalController.java
 E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\controller\BorrowController.java
+E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\controller\RealAuthController.java
 E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\annotation\RequireLogin.java
 E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\controller\RegisterController.java
 E:\CJJ\GraduationDesignGit\frontUser\src\main\java\study\cjj\eloan\base\controller\BasicInfoController.java

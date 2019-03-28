@@ -10,6 +10,7 @@
     <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="authScore" property="authScore" jdbcType="INTEGER" />
+    <result column="realAuthenticationId" property="realAuthenticationId" jdbcType="BIGINT" />
     
     <association column="incomeGrade_id" property="incomeGrade" javaType="study.cjj.eloan.base.domain.SystemDictionaryItem" select="study.cjj.eloan.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
     <association column="marriage_id" property="marriage" javaType="study.cjj.eloan.base.domain.SystemDictionaryItem" select="study.cjj.eloan.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
@@ -24,7 +25,7 @@
   <insert id="insert" parameterType="study.cjj.eloan.base.domain.UserInfo" keyProperty="id" >
     insert into userinfo (<include refid="base_Column"/>)
     values (#{id},0, #{bitState,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, 
-      #{idNumber,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{authScore,jdbcType=INTEGER},#{incomeGrade.id,jdbcType=BIGINT}, 
+      #{idNumber,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{authScore,jdbcType=INTEGER},#{realAuthenticationId,jdbcType=BIGINT},#{incomeGrade.id,jdbcType=BIGINT}, 
       #{marriage.id,jdbcType=BIGINT}, #{kidCount.id,jdbcType=BIGINT}, #{educationBackground.id,jdbcType=BIGINT}, 
       #{houseCondition.id,jdbcType=BIGINT})
   </insert>
@@ -37,6 +38,7 @@
       phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       authScore = #{authScore,jdbcType=INTEGER},
+      realAuthenticationId = #{realAuthenticationId,jdbcType=BIGINT},
       incomeGrade_id = #{incomeGrade.id,jdbcType=BIGINT},
       marriage_id = #{marriage.id,jdbcType=BIGINT},
       kidCount_id = #{kidCount.id,jdbcType=BIGINT},
@@ -47,18 +49,20 @@
   
   <sql id="base_Column">
   	id,version, bitState, realName, 
-      idNumber, phoneNumber,email,authScore,incomeGrade_id, 
+      idNumber, phoneNumber,email,authScore,realAuthenticationId,incomeGrade_id, 
       marriage_id, kidCount_id, educationBackground_id, 
       houseCondition_id
   </sql>
   
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select <include refid="base_Column"/>
-    from userinfo
-    where id = #{id,jdbcType=BIGINT}
-  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select <include refid="base_Column"/>
     from userinfo
   </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select <include refid="base_Column" />
+     from userinfo
+     where id = #{id,jdbcType=BIGINT}
+  </select>
+  
 </mapper>

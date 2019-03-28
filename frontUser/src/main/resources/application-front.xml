@@ -25,14 +25,17 @@
     		<mvc:mapping path="/*"/>
     		<bean class="study.cjj.eloan.base.interceptor.LoginCheckInterceptor" />
     	</mvc:interceptor>
+    	<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="study.cjj.eloan.base.interceptor.AddGlobalUtilsInterceptor" />
+		</mvc:interceptor>
     </mvc:interceptors>
     
      <!--文件上传解析器-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    	<property name="maxUploadSize" value="100000000"></property>
+    	<property name="maxUploadSize" value="#{1024*1024*100}"></property>
     </bean>
 
-    
     
     
     <!--配置freeMarker的模板路径 -->

@@ -29,7 +29,7 @@
     <bean id="sqlsessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis.cfg.xml"/>
-        <property name="mapperLocations" value="classpath:study/cjj/eloan/*/mapper/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath:study/cjj/eloan/*/mapper/*Mapaaper.xml"/>
         <property name="typeAliasesPackage" value="study.cjj.eloan.*.domain"/>
     </bean>
     <!--5:配置事务管理器-->
