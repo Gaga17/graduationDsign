@@ -54,5 +54,9 @@
   	SELECT i.loginTime FROM logininfo l,ipLog i WHERE l.username=i.username AND l.usertype = i.loginType AND l.username=#{username} AND l.userType=#{userType} order by i.loginTime DESC limit 1,1
   </select>
   
+  <select id="autoComplateList" resultType="hashmap">
+  	select id,username as title from logininfo where username like concat('%',#{name},'%') and usertype = 1
+  </select>
+  
   
 </mapper>

@@ -63,55 +63,45 @@
 				placement:"top"
 			});
 			//Ajax提交表单
-			$("#realAuthForm").ajaxForm(function(){
+		 	$("#realAuthForm").ajaxForm(function(){
 				$.messager.confirm("提示","实名认证申请提交成功!",function(){
 					window.location.reload();
 				});
-			});
+			}); 
 			
-			//上传正面  (需要配置文件上传相关信息 导入fileupload包)
-			$("#uploadBtn1").uploadify({
-				auto: true , //自动上传
-				buttonText:"上传身份证正面",
-				fileObjName:"file", //上传的文件的属性的名字
-				fileTypeDesc:"选择身份证正面",
-				fileTypeExts:"*.gif; *.jpg; *.png",
-				multi:false , //是否可以多选上传
-				//指定uploadify的那个falsh文件的位置
-				swf:"/js/plugins/uploadify/uploadify.swf",
-				//后台用来处理上传文件的地址;
-				uploader:"realAuth_upload.do",
-				 //覆盖默认的效果
-				overrideEvents:['onUploadSuccess','onSelect'],
-				//上传成功之后回显 
-				onUploadSuccess:function(file,data,response){
-					$("#uploadImg1").attr("src",data) ; 
-					$("#uploadImage1").val(data);
+			//上传配置
+			var config={
+					swf           : '/js/plugins/uploadify/uploadify.swf',
+					uploader      : '/realAuth_upload.do',
+					buttonCursor  :'hand',
+					fileObjName   :'file',
+					fileTypeExts  : '*.gif; *.jpg; *.png; *jpeg; *bmp',
+					multi         :false,
+					width         :140,
+					height        :30,
+					overrideEvents : ['onUploadSuccess','onUploadProgress','onSelect'],
+			}
+
+			
+			//分别创建正面和反面照片的上传成功回调：		
+			var uploadConfig1=$.extend({
+				buttonText    :'上传正面照片',
+				onUploadSuccess :function(file, data, response){
+				    $("#uploadImg1").attr("src",data);
+				    $("#uploadImage1").val(data);
 				}
-			});
-			//上传反面
-			$("#uploadBtn2").uploadify({
-				auto: true , //自动上传
-				buttonText:"上传身份证反面" ,
-				fileObjName:"file", //上传的文件的属性的名字
-				fileTypeDesc:"选择身份证反面",
-				fileTypeExts:"*.gif;*.jpg;*.png",
-				multi:false , //是否可以多选上传
-				//指定uploadify的那个falsh文件的位置
-				swf:"/js/plugins/uploadify/uploadify.swf",
-				//后台用来处理上传文件的地址;
-				uploader:"realAuth_upload.do",
-				//覆盖默认的效果
-				overrideEvents:['onUploadSuccess','onSelect'],
-				//上传成功之后回显 
-				onUploadSuccess:function(file,data,response){
-					$("#uploadImg2").attr("src",data) ; 
-					$("#uploadImage2").val(data);
-				}
-			});
-			
-			
-			
+			},config);
+					
+			var uploadConfig2=$.extend({
+				buttonText    :'上传反面照片',
+				onUploadSuccess :function(file, data, response){
+				     $("#uploadImg2").attr("src",data);
+				     $("#uploadImage2").val(data);
+				 }
+			},config);
+					
+			$("#uploadBtn1").uploadify(uploadConfig1);
+			$("#uploadBtn2").uploadify(uploadConfig2);
 		});
 		</script>
 	</head>

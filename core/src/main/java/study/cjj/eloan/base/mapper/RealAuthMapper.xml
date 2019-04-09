@@ -82,7 +82,7 @@
   <sql id="condition">
 	  <where>
 	  	<if test="status>-1">
-	  		AND r.status = #{status} 
+	  		AND r.state = #{status} 
 	  	</if>
 	  	<if test="beginDate!=null">
 	  		AND r.applyTime &gt;= #{beginDate}

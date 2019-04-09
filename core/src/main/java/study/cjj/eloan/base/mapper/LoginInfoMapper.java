@@ -2,6 +2,7 @@ package study.cjj.eloan.base.mapper;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -26,4 +27,6 @@ public interface LoginInfoMapper {
 	int selectUserTypeCount(int usertypeManager);
 
 	Date getLastLoginTime(@Param("username")String username,@Param("userType")Integer userType);
+
+	List<Map<String, String>> autoComplateList(String name);
 }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="study.cjj.eloan.base.mapper.VedioAuthMapper">
+	<resultMap id="BaseResultMap" type="study.cjj.eloan.base.domain.VedioAuth">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="state" property="state" jdbcType="TINYINT" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
+		<result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
+
+		<association property="applier" columnPrefix="ap_"
+			javaType="study.cjj.eloan.base.domain.LoginInfo">
+			<id column="id" property="id" />
+			<result column="username" property="username" />
+		</association>
+		<association property="auditor" columnPrefix="au_"
+			javaType="study.cjj.eloan.base.domain.LoginInfo">
+			<id column="id" property="id" />
+			<result column="username" property="username" />
+		</association>
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from vedioauth
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="study.cjj.eloan.base.domain.VedioAuth"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into vedioauth (state, remark, auditTime,
+		applyTime, auditor_id, applier_id
+		)
+		values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR},
+		#{auditTime,jdbcType=TIMESTAMP},
+		#{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, #{applier.id,jdbcType=BIGINT}
+		)
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.VedioAuth">
+		update vedioauth
+		set state = #{state,jdbcType=TINYINT},
+		remark = #{remark,jdbcType=VARCHAR},
+		auditTime = #{auditTime,jdbcType=TIMESTAMP},
+		applyTime = #{applyTime,jdbcType=TIMESTAMP},
+		auditor_id = #{auditor.id,jdbcType=BIGINT},
+		applier_id = #{applier.id,jdbcType=BIGINT}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select id, state, remark, auditTime, applyTime, auditor_id, applier_id
+		from vedioauth
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, state, remark, auditTime, applyTime, auditor_id, applier_id
+		from vedioauth
+	</select>
+	
+	<sql id="Base_Column_List">
+	r.id, r.state, r.remark,
+	r.auditTime, r.applyTime , ap.id as ap_id ,ap.username as ap_username ,
+	au.id as au_id ,au.username as au_username
+  </sql>
+
+	<sql id="base_where">
+		<where>
+			<if test="keyWord!=null">
+				AND ap.username LIKE concat('%',#{keyWord},'%')
+			</if>
+			<if test="status>-1">
+				AND r.state = #{status}
+			</if>
+			<if test="beginDate !=null">
+				AND r.auditTime &gt;= #{beginDate}
+			</if>
+			<if test="endDate !=null">
+				AND r.auditorTime &lt; #{endDate}
+			</if>
+		</where>
+	</sql>
+	<select id="getVedioAuthBy" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from vedioauth r join logininfo ap on r.applier_id = ap.id
+		left join
+		logininfo au on r.auditor_id = au.id
+		<include refid="base_where" />
+		<if test="pageSize >-1">
+			LIMIT #{start},#{pageSize}
+		</if>
+	</select>
+	<select id="getVedioAuthTotalCount" resultType="int">
+		select count(r.id)
+		from vedioauth r join logininfo ap on r.applier_id =
+		ap.id
+		left join logininfo au on r.auditor_id = au.id
+		<include refid="base_where" />
+	</select>
+
+
+</mapper>

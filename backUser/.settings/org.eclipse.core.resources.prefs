@@ -9,6 +9,7 @@ encoding//src/main/webapp/WEB-INF/views/main.ftl=UTF-8
 encoding//src/main/webapp/WEB-INF/views/realAuth/list.ftl=UTF-8
 encoding//src/main/webapp/WEB-INF/views/systemdic/systemDictionaryItem_list.ftl=UTF-8
 encoding//src/main/webapp/WEB-INF/views/systemdic/systemDictionary_list.ftl=UTF-8
+encoding//src/main/webapp/WEB-INF/views/vedioAuth/list.ftl=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8

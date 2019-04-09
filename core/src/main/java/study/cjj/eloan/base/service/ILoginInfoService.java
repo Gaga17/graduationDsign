@@ -1,6 +1,8 @@
 package study.cjj.eloan.base.service;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -52,4 +54,11 @@ public interface ILoginInfoService {
 	 * @return
 	 */
 	public Date getLastLoginTime(String username,Integer userType);
+
+	/**
+	 * 视频认证自动补全
+	 * @param key
+	 * @return
+	 */
+	public List<Map<String, String>> autoComplateList(String key);
 }

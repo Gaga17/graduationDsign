@@ -35,6 +35,7 @@ public class RealAuth extends BaseAuditDomain{
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("id", id);
 		m.put("realName", realName);
+		m.put("username", getApplier().getUsername());
 		m.put("sex", this.getSexDisplay());
 		m.put("birthDate", birthDate);
 		m.put("idNumber", idNumber);

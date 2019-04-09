@@ -1,6 +1,8 @@
 package study.cjj.eloan.base.service.impl;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -96,6 +98,12 @@ public class LoginInfoServiceImpl implements ILoginInfoService {
 
 	public Date getLastLoginTime(String username,Integer userType) {
 		return loginInfoMapper.getLastLoginTime(username,userType);
+	}
+
+	@Override
+	public List<Map<String, String>> autoComplateList(String name) {
+		
+		return this.loginInfoMapper.autoComplateList(name);
 	}
 
 }

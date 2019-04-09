@@ -43,7 +43,7 @@
 									</tr>
 									<tr>
 										<td><span>证件号码： ${realAuth.idNumber}</span></td>
-										<td><span>出生日期：${(realAuth.bornDate)!''}</span></td>
+										<td><span>出生日期：${(realAuth.birthDate)!''}</span></td>
 									</tr>
 								</table>
 							</div>

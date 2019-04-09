@@ -16,21 +16,26 @@ public class RealAuthController extends BaseController {
 
 	@Autowired
 	private IRealAuthService realAuthService;
-	
+
 	/**
 	 * 实名认证列表
+	 * 
 	 * @param qo
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/realAuth")
-	public String list(@ModelAttribute("qo")RealAuthQueryObject qo,Model model){
-		model.addAttribute("pageResult",this.realAuthService.query(qo));
+	public String list(@ModelAttribute("qo") RealAuthQueryObject qo, Model model, Integer state) {
+		if (qo != null && state != null) {
+			qo.setStatus(state);
+		}
+		model.addAttribute("pageResult", this.realAuthService.query(qo));
 		return "realAuth/list";
 	}
-	
+
 	/**
 	 * 实名认证审核
+	 * 
 	 * @param id
 	 * @param remark
 	 * @param state
@@ -49,6 +54,5 @@ public class RealAuthController extends BaseController {
 		}
 		return json;
 	}
-
 
 }

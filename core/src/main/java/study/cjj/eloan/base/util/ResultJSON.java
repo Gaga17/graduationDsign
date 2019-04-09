@@ -21,6 +21,9 @@ public class ResultJSON {
 	public ResultJSON() {
 	}
 
+	public ResultJSON(boolean success){
+		this.success = success;
+	}
 	
 	public ResultJSON(boolean success, Object msg) {
 		this.success = success;

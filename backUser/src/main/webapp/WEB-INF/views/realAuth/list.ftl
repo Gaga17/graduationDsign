@@ -42,7 +42,7 @@
 			$("#realName").text(json.realName);
 			$("#idNumber").text(json.idNumber);
 			$("#sex").text(json.sex);
-			$("#bornDate").text(json.bornDate);
+			$("#bornDate").text(json.birthDate);
 			$("#address").text(json.address);
 			$("#image1").attr("src",json.image1);
 			$("#image2").attr("src",json.image2);
@@ -85,14 +85,14 @@
 					<input type="hidden" id="currentPage" name="currentPage" value=""/>
 					<div class="form-group">
 					    <label>状态</label>
-					    <select class="form-control" name="state">
+					    <select class="form-control" name="status">
 					    	<option value="-1">全部</option>
 					    	<option value="0">待审核</option>
 					    	<option value="1">审核通过</option>
 					    	<option value="2">审核拒绝</option>
 					    </select>
 					    <script type="text/javascript">
-					    	$("[name=state] option[value='${(qo.state)!''}']").attr("selected","selected");
+					    	$("[name=status] option[value='${(qo.status)!''}']").attr("selected","selected");
 					    </script>
 					</div>
 					<div class="form-group">

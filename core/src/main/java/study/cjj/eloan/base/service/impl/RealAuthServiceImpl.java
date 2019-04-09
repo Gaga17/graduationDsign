@@ -73,6 +73,8 @@ public class RealAuthServiceImpl implements IRealAuthService {
 					userinfo.setRealAuthenticationId(null);
 				}else{
 					userinfo.addState(BitStatesUtils.OP_REAL_AUTH);
+					userinfo.setRealName(realAuth.getRealName());//设置真实姓名
+					userinfo.setIdNumber(realAuth.getIdNumber());
 				}
 				this.realAuthMapper.updateByPrimaryKey(realAuth);
 				this.userInfoService.update(userinfo);
