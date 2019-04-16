@@ -39,14 +39,16 @@ public class UserFileController extends BaseController{
 				true);
 		if (noTypeUserFiles.size() <= 0) {
 			noTypeUserFiles=this.userFileService.selectUserFileList(UserContext.getLoginInfo().getId(), false);
+			model.addAttribute("sessionId",request.getSession().getId());
 			model.addAttribute("userFiles",noTypeUserFiles);
 			return "userFiles";
 		}else{
-			model.addAttribute("sessionid",request.getSession().getId());
+			model.addAttribute("sessionId",request.getSession().getId());
 			model.addAttribute("userFiles",noTypeUserFiles);
 			return "userFiles_commit";
 		}
 	}
+
 	
 	/**
 	 * 风控文件上传

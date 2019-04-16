@@ -1,8 +1,8 @@
 package study.cjj.eloan.base.domain;
 
-import lombok.Getter;
-
 import org.apache.ibatis.type.Alias;
+
+import lombok.Getter;
 import lombok.Setter;
 
 /**

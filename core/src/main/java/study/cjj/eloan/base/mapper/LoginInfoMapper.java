@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import study.cjj.eloan.base.domain.IpLog;
 import study.cjj.eloan.base.domain.LoginInfo;
 
 public interface LoginInfoMapper {

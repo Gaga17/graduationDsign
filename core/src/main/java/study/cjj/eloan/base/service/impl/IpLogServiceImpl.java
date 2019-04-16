@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import study.cjj.eloan.base.domain.IpLog;
-import study.cjj.eloan.base.domain.LoginInfo;
 import study.cjj.eloan.base.mapper.IpLogMapper;
 import study.cjj.eloan.base.query.IpLogQueryObject;
 import study.cjj.eloan.base.query.PageResult;
 import study.cjj.eloan.base.service.IIpLogService;
-import study.cjj.eloan.base.util.UserContext;
 
 @Service
 public class IpLogServiceImpl implements IIpLogService {

@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import org.apache.ibatis.type.Alias;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import study.cjj.eloan.base.constant.BidConst;
 

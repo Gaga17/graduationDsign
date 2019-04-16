@@ -3,20 +3,16 @@ package study.cjj.eloan.base.service.impl;
 import java.util.Properties;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import study.cjj.eloan.base.domain.MyMailMessage;
 import study.cjj.eloan.base.service.IMailService;
-import study.cjj.eloan.base.util.LogicException;
 
 @Service
 public class MailServiceImpl implements IMailService {

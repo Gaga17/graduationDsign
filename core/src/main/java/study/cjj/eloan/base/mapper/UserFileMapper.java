@@ -1,6 +1,9 @@
 package study.cjj.eloan.base.mapper;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import study.cjj.eloan.base.domain.UserFile;
 
 public interface UserFileMapper {
@@ -14,5 +17,5 @@ public interface UserFileMapper {
 
     int updateByPrimaryKey(UserFile record);
 
-	List<UserFile> selectUserFileList(Long applierId, boolean noType);
+	List<UserFile> selectUserFileList(@Param("applierId")Long applierId,@Param("noType") boolean noType);
 }

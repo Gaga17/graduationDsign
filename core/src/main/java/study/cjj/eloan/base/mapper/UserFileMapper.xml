@@ -59,7 +59,7 @@
   </select>
   
  <sql id="base_column">
-  	f.id, f.state, f.remark, f.auditTime, f.applyTime,  f.score, f.image,
+  	f.id, f.state, f.remark, f.auditTime, f.applyTime,  f.score, f.file,
   	au.id as au_id ,au.username as au_username ,
   	ap.id as ap_id ,ap.username as ap_username ,
   	ft.id as ft_id , ft.title as ft_title 
@@ -97,7 +97,7 @@
   <select id="selectUserFileList" resultMap="BaseResultMap">
   	select <include refid="base_column" />
   	from <include refid="base_table" /> 
-  	 where f.applier_id = #{logininfoId} 
+  	 where f.applier_id = #{applierId} 
   	 <if test="noType">
   	 AND  f.fileType_id IS NULL 
   	 </if>

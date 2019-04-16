@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
-
 import study.cjj.eloan.base.domain.LoginInfo;
 
 public interface ILoginInfoService {
