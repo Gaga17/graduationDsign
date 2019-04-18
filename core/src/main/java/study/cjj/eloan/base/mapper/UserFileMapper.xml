@@ -5,8 +5,9 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="state" property="state" jdbcType="TINYINT" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="auditTime" property="audittime" jdbcType="TIMESTAMP" />
-    <result column="applyTime" property="applytime" jdbcType="TIMESTAMP" />
+    <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
+    
     <result column="score" property="score" jdbcType="TINYINT" />
     <result column="file" property="file" jdbcType="VARCHAR" />
     
@@ -34,22 +35,22 @@
       applyTime, auditor_id, applier_id, 
       score, file, filetype_id
       )
-    values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{audittime,jdbcType=TIMESTAMP}, 
-      #{applytime,jdbcType=TIMESTAMP}, #{auditorId,jdbcType=BIGINT}, #{applierId,jdbcType=BIGINT}, 
-      #{score,jdbcType=TINYINT}, #{file,jdbcType=VARCHAR}, #{filetypeId,jdbcType=BIGINT}
+    values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, #{applier.id,jdbcType=BIGINT}, 
+      #{score,jdbcType=TINYINT}, #{file,jdbcType=VARCHAR}, #{fileType.id,jdbcType=BIGINT}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.UserFile" >
     update userfile
     set state = #{state,jdbcType=TINYINT},
       remark = #{remark,jdbcType=VARCHAR},
-      auditTime = #{audittime,jdbcType=TIMESTAMP},
-      applyTime = #{applytime,jdbcType=TIMESTAMP},
-      auditor_id = #{auditorId,jdbcType=BIGINT},
-      applier_id = #{applierId,jdbcType=BIGINT},
+      auditTime = #{auditTime,jdbcType=TIMESTAMP},
+      applyTime = #{applyTime,jdbcType=TIMESTAMP},
+      auditor_id = #{auditor.id,jdbcType=BIGINT},
+      applier_id = #{applier.id,jdbcType=BIGINT},
       score = #{score,jdbcType=TINYINT},
       file = #{file,jdbcType=VARCHAR},
-      filetype_id = #{filetypeId,jdbcType=BIGINT}
+      filetype_id = #{fileType.id,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectAll" resultMap="BaseResultMap" >
@@ -72,8 +73,8 @@
   
    <sql id="condition">
 	  <where>
-	  	<if test="state>-1">
-	  		AND f.state = #{state} 
+	  	<if test="status>-1">
+	  		AND f.state = #{status} 
 	  	</if>
 	  	<if test="applierId!=null">
 	  		AND f.applier_id = #{applierId} 
