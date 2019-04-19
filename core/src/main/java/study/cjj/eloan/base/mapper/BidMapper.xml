@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="study.cjj.eloan.base.mapper.BidMapper" >
+  <resultMap id="BaseResultMap" type="study.cjj.eloan.base.domain.Bid" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="actualRate" property="actualRate" jdbcType="DECIMAL" />
+    <result column="availableAmount" property="availableAmount" jdbcType="DECIMAL" />
+    <result column="bidrequest_id" property="bidRequestId" jdbcType="BIGINT" />
+    <result column="bidTime" property="bidTime" jdbcType="TIMESTAMP" />
+    <result column="bidRequestTitle" property="bidRequestTitle" jdbcType="VARCHAR" />
+    
+    <association property="bidUser" javaType="study.cjj.eloan.base.domain.LoginInfo" columnPrefix="bu_">
+    	<id column="id" property="id"/>
+    	<result column="username" property="username"/>
+    </association>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bid
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="study.cjj.eloan.base.domain.Bid" useGeneratedKeys="true" keyProperty="id" >
+    insert into bid (actualRate, availableAmount, bidrequest_id, 
+      bidUser_id, bidTime, bidRequestTitle
+      )
+    values (#{actualrate,jdbcType=DECIMAL}, #{availableamount,jdbcType=DECIMAL}, #{bidRequestId,jdbcType=BIGINT}, 
+      #{biduserId,jdbcType=BIGINT}, #{bidTime,jdbcType=TIMESTAMP}, #{bidRequestTitle,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.Bid" >
+    update bid
+    set actualRate = #{actualrate,jdbcType=DECIMAL},
+      availableAmount = #{availableamount,jdbcType=DECIMAL},
+      bidrequest_id = #{bidRequestId,jdbcType=BIGINT},
+      bidUser_id = #{biduserId,jdbcType=BIGINT},
+      bidTime = #{bidTime,jdbcType=TIMESTAMP},
+      bidRequestTitle = #{bidRequestTitle,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, actualRate, availableAmount, bidrequest_id, bidUser_id, bidTime, bidRequestTitle
+    from bid
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, actualRate, availableAmount, bidrequest_id, bidUser_id, bidTime, bidRequestTitle
+    from bid
+  </select>
+</mapper>
