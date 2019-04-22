@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/webapp/WEB-INF/views/bidrequest/audit1.ftl=UTF-8
+encoding//src/main/webapp/WEB-INF/views/bidrequest/audit2.ftl=UTF-8
+encoding//src/main/webapp/WEB-INF/views/bidrequest/borrow_info.ftl=UTF-8
+encoding//src/main/webapp/WEB-INF/views/bidrequest/publish_audit.ftl=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/top.ftl=UTF-8
 encoding//src/main/webapp/WEB-INF/views/ipLog/Copy\ of\ list.ftl=UTF-8
 encoding//src/main/webapp/WEB-INF/views/ipLog/list.ftl=UTF-8

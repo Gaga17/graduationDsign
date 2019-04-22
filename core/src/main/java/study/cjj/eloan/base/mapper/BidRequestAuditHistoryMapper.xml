@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="study.cjj.eloan.base.mapper.BidRequestAuditHistoryMapper" >
+  <resultMap id="BaseResultMap" type="study.cjj.eloan.base.domain.BidRequestAuditHistory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="bidRequestId" property="bidRequestId" jdbcType="BIGINT" />
+    <result column="auditType" property="auditType" jdbcType="TINYINT" />
+    
+    <association property="applier" columnPrefix="ap_"
+			javaType="study.cjj.eloan.base.domain.LoginInfo">
+			<id column="id" property="id" />
+			<result column="username" property="username" />
+		</association>
+		<association property="auditor" columnPrefix="au_"
+			javaType="study.cjj.eloan.base.domain.LoginInfo">
+			<id column="id" property="id" />
+			<result column="username" property="username" />
+		</association>
+    
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bidrequestaudithistory
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="study.cjj.eloan.base.domain.BidRequestAuditHistory" useGeneratedKeys="true" keyProperty="id" >
+    insert into bidrequestaudithistory (state, remark, auditTime, 
+      applyTime, auditor_id, applier_id, 
+      bidRequestId, auditType)
+    values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{auditorId,jdbcType=BIGINT}, #{applierId,jdbcType=BIGINT}, 
+      #{bidRequestId,jdbcType=BIGINT}, #{auditType,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.BidRequestAuditHistory" >
+    update bidrequestaudithistory
+    set state = #{state,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      auditTime = #{auditTime,jdbcType=TIMESTAMP},
+      applyTime = #{applyTime,jdbcType=TIMESTAMP},
+      auditor_id = #{auditorId,jdbcType=BIGINT},
+      applier_id = #{applierId,jdbcType=BIGINT},
+      bidRequestId = #{bidRequestId,jdbcType=BIGINT},
+      auditType = #{auditType,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, state, remark, auditTime, applyTime, auditor_id, applier_id, bidRequestId, 
+    auditType
+    from bidrequestaudithistory
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, state, remark, auditTime, applyTime, auditor_id, applier_id, bidRequestId, 
+    auditType
+    from bidrequestaudithistory
+  </select>
+</mapper>

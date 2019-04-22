@@ -27,6 +27,17 @@
 			.text-danger{text-align: center;}
 		</style>
 		<script type="text/javascript">
+		
+		jQuery.validator.addMethod("notGreatThan", function(value, element, param){
+			var target = $(param);
+			if ( this.settings.onfocusout ) {
+				target.unbind(".valiate-notGreatThan").bind("blur.valiate-notGreatThan", function() {
+					$(element).valid();
+				});
+			}
+			return parseFloat(value) <= parseFloat(target.val());
+		});
+
 			$(function(){
 				$("#editForm").validate({
 					rules : {
@@ -45,7 +56,8 @@
 						minBidAmount:{
 							required:true,
 							number:true,
-							min:${minBidAmount}
+							min:${minBidAmount},
+							notGreatThan:"#bidRequestAmount"
 						},
 						title:"required"
 					},
@@ -65,7 +77,8 @@
 						minBidAmount:{
 							required:"请填写最小投标金额",
 							number:"最小投标金额为数字",
-							min:"最小投标金额必须大于{0}"
+							min:"最小投标金额必须大于{0}",
+							notGreatThan:"最小投标金额不能超过借款金额"
 						},
 						title:"必须填写借款原因"
 					},

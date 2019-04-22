@@ -3,7 +3,11 @@ package study.cjj.eloan.base.domain;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSONObject;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,5 +45,23 @@ public class BidRequest extends BaseDomain{
 	private List<Bid> bids = new ArrayList<Bid>(); // 这个借款已经有的标(已经收到的投标)
 	private Date applyTime;// 申请时间
 	private Date publishTime;// 发布时间
+
+	public String getReturnTypeDisplay() {
+		return returnType == BidConst.RETURN_TYPE_MONTH_INTEREST ? "按月到期"
+				: "等额本息";
+	}
+	
+	public String getJsonString(){
+		Map<String,Object> m=new HashMap<String,Object>();
+		m.put("id", id);
+		m.put("username",this.createUser.getUsername());
+		m.put("title", title);
+		m.put("bidRequestAmount", bidRequestAmount);
+		m.put("currentRate",currentRate);
+		m.put("monthes2Return", monthes2Return);
+		m.put("totalRewardAmount",totalRewardAmount);
+		m.put("returnType",getReturnTypeDisplay());
+		return JSONObject.toJSONString(m);
+	}
 
 }

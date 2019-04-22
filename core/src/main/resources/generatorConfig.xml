@@ -83,7 +83,7 @@ connectionURL="jdbc:mysql://192.168.0.128:3306/p2p" userId="root" password="root
 				value=""/> -->
 		</javaClientGenerator>
 
-		<table tableName="" domainObjectName="">
+		<table tableName="BidRequestAuditHistory" domainObjectName="BidRequestAuditHistory">
 			<!-- 参考 javaModelGenerator 的 constructorBased属性 -->
 			<property name="constructorBased" value="false" />
 			<generatedKey column="id" sqlStatement="JDBC" />

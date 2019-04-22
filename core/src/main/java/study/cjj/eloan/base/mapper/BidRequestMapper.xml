@@ -55,7 +55,7 @@
 		#{bidCount,jdbcType=INTEGER}, #{totalRewardAmount,jdbcType=DECIMAL},
 		#{currentSum,jdbcType=DECIMAL},
 		#{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR},
-		#{disableDate,jdbcType=TIMESTAMP}, #{createuserId,jdbcType=BIGINT},
+		#{disableDate,jdbcType=TIMESTAMP}, #{createUser.id,jdbcType=BIGINT},
 		#{disableDays,jdbcType=TINYINT},
 		#{minBidAmount,jdbcType=DECIMAL}, #{applyTime,jdbcType=TIMESTAMP}, #{publishTime,jdbcType=TIMESTAMP}
 		)
@@ -75,7 +75,7 @@
 		description = #{description,jdbcType=VARCHAR},
 		note = #{note,jdbcType=VARCHAR},
 		disableDate = #{disableDate,jdbcType=TIMESTAMP},
-		createuser_id = #{createuserId,jdbcType=BIGINT},
+		createuser_id = #{createUser.id,jdbcType=BIGINT},
 		disableDays = #{disableDays,jdbcType=TINYINT},
 		minBidAmount = #{minBidAmount,jdbcType=DECIMAL},
 		applyTime = #{applyTime,jdbcType=TIMESTAMP},
