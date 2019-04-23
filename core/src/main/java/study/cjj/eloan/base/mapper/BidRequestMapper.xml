@@ -10,94 +10,172 @@
 			jdbcType="TINYINT" />
 		<result column="bidRequestAmount" property="bidRequestAmount"
 			jdbcType="DECIMAL" />
+		<result column="returnType" property="returnType" jdbcType="TINYINT" />
+
 		<result column="currentRate" property="currentRate" jdbcType="DECIMAL" />
 		<result column="monthes2Return" property="monthes2Return"
 			jdbcType="TINYINT" />
+
 		<result column="bidCount" property="bidCount" jdbcType="INTEGER" />
 		<result column="totalRewardAmount" property="totalRewardAmount"
 			jdbcType="DECIMAL" />
+
 		<result column="currentSum" property="currentSum" jdbcType="DECIMAL" />
+		<result column="minBidAmount" property="minBidAmount" jdbcType="DECIMAL" />
+
 		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="description" property="description" jdbcType="VARCHAR" />
 		<result column="note" property="note" jdbcType="VARCHAR" />
+
 		<result column="disableDate" property="disableDate" jdbcType="TIMESTAMP" />
 		<result column="disableDays" property="disableDays" jdbcType="TINYINT" />
-		<result column="minBidAmount" property="minBidAmount" jdbcType="DECIMAL" />
+
 		<result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
 		<result column="publishTime" property="publishTime" jdbcType="TIMESTAMP" />
 
-		<association property="createUser" javaType="study.cjj.eloan.base.domain.LoginInfo"
-			columnPrefix="cu_">
+		<association property="createUser"
+			javaType="study.cjj.eloan.base.domain.LoginInfo" columnPrefix="cu_">
 			<id column="id" property="id" />
 			<result column="username" property="username" />
 		</association>
 		<collection property="bids" ofType="study.cjj.eloan.base.domain.Bid"
-			column="id" select="com.xmg.p2p.business.mapper.BidMapper.selectByBidRequest" />
-			
+			column="id" select="study.cjj.eloan.base.mapper.BidMapper.selectByBidRequest" />
+
 	</resultMap>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from bidrequest
+		delete from
+		bidrequest
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
 	<insert id="insert" parameterType="study.cjj.eloan.base.domain.BidRequest"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into bidrequest (version, bidRequestType, bidRequestState,
-		bidRequestAmount, currentRate, monthes2Return,
+		insert into bidrequest (version,returnType,
+		bidRequestType, bidRequestState,
+		bidRequestAmount, currentRate,
+		monthes2Return,
 		bidCount, totalRewardAmount, currentSum,
-		title, description, note,
+		title,
+		description, note,
 		disableDate, createuser_id, disableDays,
 		minBidAmount, applyTime, publishTime
 		)
-		values (#{version,jdbcType=INTEGER}, #{bidRequestType,jdbcType=TINYINT},
+		values
+		(#{version,jdbcType=INTEGER},#{returnType,jdbcType=TINYINT}, #{bidRequestType,jdbcType=TINYINT},
 		#{bidRequestState,jdbcType=TINYINT},
 		#{bidRequestAmount,jdbcType=DECIMAL}, #{currentRate,jdbcType=DECIMAL},
 		#{monthes2Return,jdbcType=TINYINT},
-		#{bidCount,jdbcType=INTEGER}, #{totalRewardAmount,jdbcType=DECIMAL},
+		#{bidCount,jdbcType=INTEGER},
+		#{totalRewardAmount,jdbcType=DECIMAL},
 		#{currentSum,jdbcType=DECIMAL},
-		#{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR},
-		#{disableDate,jdbcType=TIMESTAMP}, #{createUser.id,jdbcType=BIGINT},
+		#{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+		#{note,jdbcType=VARCHAR},
+		#{disableDate,jdbcType=TIMESTAMP},
+		#{createUser.id,jdbcType=BIGINT},
 		#{disableDays,jdbcType=TINYINT},
-		#{minBidAmount,jdbcType=DECIMAL}, #{applyTime,jdbcType=TIMESTAMP}, #{publishTime,jdbcType=TIMESTAMP}
+		#{minBidAmount,jdbcType=DECIMAL}, #{applyTime,jdbcType=TIMESTAMP},
+		#{publishTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
 	<update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.BidRequest">
 		update bidrequest
 		set version = #{version,jdbcType=INTEGER},
-		bidRequestType = #{bidRequestType,jdbcType=TINYINT},
-		bidRequestState = #{bidRequestState,jdbcType=TINYINT},
-		bidRequestAmount = #{bidRequestAmount,jdbcType=DECIMAL},
-		currentRate = #{currentRate,jdbcType=DECIMAL},
-		monthes2Return = #{monthes2Return,jdbcType=TINYINT},
-		bidCount = #{bidCount,jdbcType=INTEGER},
-		totalRewardAmount = #{totalRewardAmount,jdbcType=DECIMAL},
-		currentSum = #{currentSum,jdbcType=DECIMAL},
+		bidRequestType =
+		#{bidRequestType,jdbcType=TINYINT},
+		bidRequestState =
+		#{bidRequestState,jdbcType=TINYINT},
+		bidRequestAmount =
+		#{bidRequestAmount,jdbcType=DECIMAL},
+		currentRate =
+		#{currentRate,jdbcType=DECIMAL},
+		monthes2Return =
+		#{monthes2Return,jdbcType=TINYINT},
+		bidCount =
+		#{bidCount,jdbcType=INTEGER},
+		totalRewardAmount =
+		#{totalRewardAmount,jdbcType=DECIMAL},
+		currentSum =
+		#{currentSum,jdbcType=DECIMAL},
 		title = #{title,jdbcType=VARCHAR},
 		description = #{description,jdbcType=VARCHAR},
-		note = #{note,jdbcType=VARCHAR},
-		disableDate = #{disableDate,jdbcType=TIMESTAMP},
-		createuser_id = #{createUser.id,jdbcType=BIGINT},
-		disableDays = #{disableDays,jdbcType=TINYINT},
-		minBidAmount = #{minBidAmount,jdbcType=DECIMAL},
-		applyTime = #{applyTime,jdbcType=TIMESTAMP},
-		publishTime = #{publishTime,jdbcType=TIMESTAMP}
+		note =
+		#{note,jdbcType=VARCHAR},
+		disableDate =
+		#{disableDate,jdbcType=TIMESTAMP},
+		createuser_id =
+		#{createUser.id,jdbcType=BIGINT},
+		disableDays =
+		#{disableDays,jdbcType=TINYINT},
+		minBidAmount =
+		#{minBidAmount,jdbcType=DECIMAL},
+		applyTime =
+		#{applyTime,jdbcType=TIMESTAMP},
+		publishTime =
+		#{publishTime,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">
-		select id, version, bidRequestType, bidRequestState, bidRequestAmount,
-		currentRate,
-		monthes2Return, bidCount, totalRewardAmount, currentSum, title, description, note,
-		disableDate, createuser_id, disableDays, minBidAmount, applyTime,
-		publishTime
-		from bidrequest
-		where id = #{id,jdbcType=BIGINT}
+		select <include refid="base_columns"></include>
+		from
+		bidrequest r join logininfo l on r.createuser_id = l.id
+		where r.id = #{id,jdbcType=BIGINT}
 	</select>
 	<select id="selectAll" resultMap="BaseResultMap">
-		select id, version, bidRequestType, bidRequestState, bidRequestAmount,
-		currentRate,
-		monthes2Return, bidCount, totalRewardAmount, currentSum, title, description, note,
-		disableDate, createuser_id, disableDays, minBidAmount, applyTime,
-		publishTime
+		select <include refid="base_columns"></include>
 		from bidrequest
 	</select>
+
+	<sql id="base_columns">
+		r.id, r.version, r.bidRequestType, r.bidRequestState,r.bidRequestAmount,r.currentRate,
+		r.monthes2Return, r.bidCount, r.totalRewardAmount, r.currentSum, r.title,
+		r.description,r.note,
+		r.disableDate, r.createuser_id, r.disableDays, r.minBidAmount,
+		r.applyTime,r.publishTime, r.returnType ,
+		l.id as cu_id , l.username as cu_username
+	</sql>
+
+	<sql id="base_where">
+		<where>
+			<if test="creatorId!=null">
+				AND r.createuser_id = #{creatorId}
+			</if>
+			<if test="states!=null">
+				AND r.bidRequestState in
+				<foreach collection="states" item="state" open="(" close=")"
+					separator=",">
+					#{states}
+				</foreach>
+			</if>
+			<if test="beginDate!=null">
+				AND r.publishTime >= #{beginDate}
+			</if>
+			<if test="endDate!=null">
+				AND r.publishTime &lt; #{endDate}
+			</if>
+			<if test="bidRequestState > -1">
+				AND r.bidRequestState = #{bidRequestState}
+			</if>
+		</where>
+	</sql>
+
+	<select id="getBidRequestTotalCount" resultType="long">
+		select count(r.id)
+		from bidrequest r
+		<include refid="base_where" />
+	</select>
+
+	<select id="getBidRequestBy" resultMap="BaseResultMap">
+		select
+		<include refid="base_columns" />
+		from bidrequest r join logininfo l on r.createuser_id = l.id
+		<include refid="base_where" />
+		<if test="orderBy!=null and orderType!=null">
+			ORDER BY #{orderBy} #{orderType}
+		</if>
+		<if test="pageSize>-1">
+			LIMIT #{start},#{pageSize}
+		</if>
+	</select>
+
+
 </mapper>

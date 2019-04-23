@@ -45,4 +45,13 @@
     select id, actualRate, availableAmount, bidrequest_id, bidUser_id, bidTime, bidRequestTitle
     from bid
   </select>
+    <sql id="base_column">
+  	b.id, actualRate, availableAmount, bidRequest_id, bidTime, bidRequestTitle, 
+    b.bidRequestState ,bu.id as bu_id ,bu.username as bu_username 
+   </sql>
+   <select id="selectByBidRequest" resultMap="BaseResultMap" >
+    select <include refid="base_column" />
+    from bid b join logininfo bu on bu.id =b.bidUser_id
+    where b.bidRequest_id = #{id}
+  </select>
 </mapper>

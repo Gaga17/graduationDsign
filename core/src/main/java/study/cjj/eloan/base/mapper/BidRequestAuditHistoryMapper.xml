@@ -31,7 +31,7 @@
       applyTime, auditor_id, applier_id, 
       bidRequestId, auditType)
     values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, 
-      #{applyTime,jdbcType=TIMESTAMP}, #{auditorId,jdbcType=BIGINT}, #{applierId,jdbcType=BIGINT}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, #{applier.id,jdbcType=BIGINT}, 
       #{bidRequestId,jdbcType=BIGINT}, #{auditType,jdbcType=TINYINT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.BidRequestAuditHistory" >
