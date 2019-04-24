@@ -1,7 +1,10 @@
 package study.cjj.eloan.base.service;
 
+import java.util.List;
+
 import study.cjj.eloan.base.domain.BidRequest;
 import study.cjj.eloan.base.domain.LoginInfo;
+import study.cjj.eloan.base.mapper.BidRequestAuditHistory;
 import study.cjj.eloan.base.query.BidRequestQueryObject;
 import study.cjj.eloan.base.query.PageResult;
 
@@ -21,5 +24,8 @@ public interface IBidRequestService {
 	public BidRequest getBidRequest(Long id);
 
 	public void publishAudit(BidRequest bidRequest, int state, String remark);
+
+	
+	public List<BidRequestAuditHistory> listAuditHistorayByBidRequest(Long id);
 
 }

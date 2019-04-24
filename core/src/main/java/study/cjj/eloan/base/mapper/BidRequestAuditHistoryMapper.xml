@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="study.cjj.eloan.base.mapper.BidRequestAuditHistoryMapper" >
-  <resultMap id="BaseResultMap" type="study.cjj.eloan.base.domain.BidRequestAuditHistory" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="state" property="state" jdbcType="TINYINT" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
-    <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
-    <result column="bidRequestId" property="bidRequestId" jdbcType="BIGINT" />
-    <result column="auditType" property="auditType" jdbcType="TINYINT" />
-    
-    <association property="applier" columnPrefix="ap_"
+<mapper namespace="study.cjj.eloan.base.mapper.BidRequestAuditHistoryMapper">
+	<resultMap id="BaseResultMap"
+		type="study.cjj.eloan.base.domain.BidRequestAuditHistory">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="state" property="state" jdbcType="TINYINT" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
+		<result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
+		<result column="bidRequestId" property="bidRequestId" jdbcType="BIGINT" />
+		<result column="auditType" property="auditType" jdbcType="TINYINT" />
+
+		<association property="applier" columnPrefix="ap_"
 			javaType="study.cjj.eloan.base.domain.LoginInfo">
 			<id column="id" property="id" />
 			<result column="username" property="username" />
@@ -20,41 +21,107 @@
 			<id column="id" property="id" />
 			<result column="username" property="username" />
 		</association>
-    
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bidrequestaudithistory
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="study.cjj.eloan.base.domain.BidRequestAuditHistory" useGeneratedKeys="true" keyProperty="id" >
-    insert into bidrequestaudithistory (state, remark, auditTime, 
-      applyTime, auditor_id, applier_id, 
-      bidRequestId, auditType)
-    values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, 
-      #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, #{applier.id,jdbcType=BIGINT}, 
-      #{bidRequestId,jdbcType=BIGINT}, #{auditType,jdbcType=TINYINT})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.BidRequestAuditHistory" >
-    update bidrequestaudithistory
-    set state = #{state,jdbcType=TINYINT},
-      remark = #{remark,jdbcType=VARCHAR},
-      auditTime = #{auditTime,jdbcType=TIMESTAMP},
-      applyTime = #{applyTime,jdbcType=TIMESTAMP},
-      auditor_id = #{auditorId,jdbcType=BIGINT},
-      applier_id = #{applierId,jdbcType=BIGINT},
-      bidRequestId = #{bidRequestId,jdbcType=BIGINT},
-      auditType = #{auditType,jdbcType=TINYINT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select id, state, remark, auditTime, applyTime, auditor_id, applier_id, bidRequestId, 
-    auditType
-    from bidrequestaudithistory
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select id, state, remark, auditTime, applyTime, auditor_id, applier_id, bidRequestId, 
-    auditType
-    from bidrequestaudithistory
-  </select>
+
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		bidrequestaudithistory
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="study.cjj.eloan.base.domain.BidRequestAuditHistory"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into bidrequestaudithistory
+		(state, remark, auditTime,
+		applyTime, auditor_id, applier_id,
+		bidRequestId, auditType)
+		values (#{state,jdbcType=TINYINT},
+		#{remark,jdbcType=VARCHAR},
+		#{auditTime,jdbcType=TIMESTAMP},
+		#{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT},
+		#{applier.id,jdbcType=BIGINT},
+		#{bidRequestId,jdbcType=BIGINT},
+		#{auditType,jdbcType=TINYINT})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="study.cjj.eloan.base.domain.BidRequestAuditHistory">
+		update
+		bidrequestaudithistory
+		set state = #{state,jdbcType=TINYINT},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		auditTime =
+		#{auditTime,jdbcType=TIMESTAMP},
+		applyTime =
+		#{applyTime,jdbcType=TIMESTAMP},
+		auditor_id =
+		#{auditorId,jdbcType=BIGINT},
+		applier_id =
+		#{applierId,jdbcType=BIGINT},
+		bidRequestId =
+		#{bidRequestId,jdbcType=BIGINT},
+		auditType =
+		#{auditType,jdbcType=TINYINT}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<sql id="base_column">
+		h.id, h.state, h.remark, h.auditTime, h.applyTime,
+		h.bidRequestId,
+		h.auditType ,
+		ap.id as ap_id ,ap.username as ap_username
+		,au.id as au_id ,au.username as
+		au_username
+	</sql>
+
+	<sql id="base_where">
+		<where>
+			<if test="bidRequestId!=null">
+				AND r.bidRequestId = #{bidRequestId}
+			</if>
+			<if test="auditType > -1">
+				AND r.auditType = #{auditType}
+			</if>
+			<if test="beginDate !=null">
+				AND r.auditTime &gt;= #{beginDate}
+			</if>
+			<if test="endDate !=null">
+				AND r.auditTime &lt; #{endDate}
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		<include refid="base_column" />
+		from bidrequestaudithistory r join logininfo ap on r.applier_id =
+		ap.id
+		left join logininfo au on r.auditor_id = au.id
+		where r.id =
+		#{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="listAuditHistorayByBidRequest" resultMap="BaseResultMap">
+		select
+		<include refid="base_column" />
+		from bidrequestaudithistory h join logininfo ap on ap.id =
+		h.applier_id
+		join logininfo au on au.id = h.auditor_id
+		where
+		h.bidRequestId = #{id}
+		ORDER BY auditTime
+	</select>
+	
+	<select id="getBidRequestAuditHistoryBy" resultMap="BaseResultMap">
+		select <include refid="base_column" />
+		from bidrequestaudithistory r join logininfo ap on r.applier_id = ap.id
+						left join logininfo au on r.auditor_id = au.id
+		<include refid="base_where" />
+	</select>
+	
+	<select id="getBidRequestAuditHistoryTotalCount" resultType="long">
+		select count(r.id)
+		from bidrequestaudithistory r
+		<include refid="base_where" />
+	</select> 
+	
+
 </mapper>

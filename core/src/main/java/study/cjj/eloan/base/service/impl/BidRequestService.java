@@ -142,5 +142,12 @@ public class BidRequestService implements IBidRequestService {
 		}
 
 	}
+	
+	/**
+	 *  查询一个借款相关的所有审核对象
+	 */
+	public List<BidRequestAuditHistory> listAuditHistorayByBidRequest(Long id) {
+		return this.bidRequestAuditHistoryMapper.listAuditHistorayByBidRequest(id);
+	}
 
 }
